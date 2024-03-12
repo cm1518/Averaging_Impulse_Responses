@@ -10,7 +10,10 @@ for mm = 1:spec.n_model+1
 
     % MEAN AND STANDARD DEVIATION
     sim.irf_mean{mm} = squeeze(mean(irf_draw,2,'omitnan'));
-    sim.irf_std{mm}  = std(irf_draw,0,2,'omitnan');
+%     sim.irf_std{mm}  = std(irf_draw,0,2,'omitnan');
+    
+    % QUANTILE THAT TRUE IRF IS IN
+    sim.irf_qtl{mm} = sum(irf_draw<=sim_par.rho.^(0:20)',2)/size(irf_draw,2);
     
 end
 
